@@ -1,1 +1,47 @@
-<h1> index page ! </h1>
+<div class="row">
+  <div class="col-12 col-lg-10 col-xl-8 mt-3 py-2 mx-auto border border-danger">
+    {{!-- <h1>縮網址產生器</h1>
+    <form action="/" method="post" class="mr-auto">
+      <input type="text" name="" id="" placeholder="請輸入想要導向的網址">
+      <button type="submit">輸入</button>
+    </form> --}}
+
+    <form action="/" method="post">
+
+      <div class="form-group">
+        <label for="input">
+          <h1>縮網址產生器</h1>
+        </label>
+        <input type="text" class="form-control" id="input" aria-describedby="inputHelp" placeholder="Enter URL">
+        <small id="inputHelp" class="form-text text-muted">請輸入您想要縮短的網址.</small>
+      </div>
+
+      <button type="submit" class="btn btn-primary">輸入</button>
+
+    </form>
+
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">原始網址 </th>
+          <th scope="col">縮網址</th>
+          <th scope="col">點擊複製</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each urls}}
+          <tr>
+            <th scope="row">#</th>
+            <td>{{this.inputUrl}}</td>
+            <td> <a href="{{{this.paramsUrl}}}">{{{this.paramsUrl}}}</a>
+            </td>
+            <td>COPY</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+  </div>
+</div>
