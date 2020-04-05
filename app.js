@@ -11,7 +11,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/urlShortener', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/urlShortener', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -44,6 +44,6 @@ app.use('/', express.static('public'))
 
 app.use('/', require('./routes/home'))
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App is running on http://localhost:${port}`)
 })
