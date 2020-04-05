@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 
 // 輸入網址，判斷網址資料
 router.post('/', (req, res) => {
-  console.log('req.body', req.body)
   if (req.body.input === "") {
     // 助教的檢查項目 ----------------------------------------------
     // req.body.input === "" 代表使用者沒有輸入內容
@@ -57,14 +56,13 @@ router.post('/', (req, res) => {
 
 // 執行縮網址
 router.get('/:id', (req, res) => {
+
   console.log('------------------------------------------------------')
-  const id = req.params.id
   console.log('req.params.id', req.params.id)
-  console.log('id', id)
   console.log('------------------------------------------------------')
 
   if (req.params.id === 'favicon.ico') {
-    console.log(`ERROR!Can Not Find Params`)
+    console.log(`ERROR！！！Can Not Find Params！！！`)
     res.redirect('/')
   } else {
     Url.findOne({ paramsUrl: req.params.id })
@@ -79,6 +77,8 @@ router.get('/:id', (req, res) => {
       })
   }
   // 下面的寫法Heroku會找不到params，只有找到一個叫favicon.ico的params，WHY????
+  // 而且不管點什麼都會啟動這個路由，太詭異了！
+  // 用if篩選params後就能正常運作，Heroku到底怎麼運作的?
   // Url.findOne({ paramsUrl: req.params.id }, (err, url) => {
   //   const originUrl = url.inputUrl
   //   console.log(originUrl)
