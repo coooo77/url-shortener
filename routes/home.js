@@ -66,9 +66,11 @@ router.get('/:id', (req, res) => {
     .exec((err, url) => {
       console.log('------------------------------------------------------')
       console.log('url', url)
+      console.log('req.params', req.params)
+      console.log('res.params', res.params)
       console.log('------------------------------------------------------')
       if (err) return console.error(err)
-      const originUrl = url.inputUrl
+      const originUrl = url.inputUrl || process.env.Heroku
       res.redirect(`${originUrl}`)
     })
 
