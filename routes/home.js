@@ -57,23 +57,30 @@ router.post('/', (req, res) => {
 
 // 執行縮網址
 router.get('/:id', (req, res) => {
-  // console.log('------------------------------------------------------')
-  // console.log('req.params.id', req.params.id)
-  // console.log('------------------------------------------------------')
-  // const id = req.params.id
-  Url.findOne({ paramsUrl: req.params.id })
-    .lean()
-    .exec((err, url) => {
-      console.log('------------------------------------------------------')
-      console.log('url', url)
-      console.log('req.params', req.params)
-      console.log('res.params', res.params)
-      console.log('------------------------------------------------------')
-      if (err) return console.error(err)
-      const originUrl = url.inputUrl || process.env.Heroku
-      res.redirect(`${originUrl}`)
-    })
+  console.log('------------------------------------------------------')
+  const id = req.params.id
+  console.log('req.params.id', req.params.id)
+  console.log('id', id)
+  console.log('res.locals.tempUrl', res.locals.tempUrl)
+  console.log('------------------------------------------------------')
 
+  if (req.params.id === 'favicon.ico') {
+    console.log(`ERROR!Can Not Find Params`)
+    res.redirect('/')
+  } else {
+    Url.findOne({ paramsUrl: req.params.id })
+      .lean()
+      .exec((err, url) => {
+        console.log('------------------------------------------------------')
+        console.log('url', url)
+        console.log('req.params', req.params)
+        console.log('res.params', res.params)
+        console.log('------------------------------------------------------')
+        if (err) return console.error(err)
+        const originUrl = url.inputUrl
+        res.redirect(`${originUrl}`)
+      })
+  }
   // 下面的寫法Heroku會找不到params，只有找到一個叫favicon.ico的params，WHY????
   // Url.findOne({ paramsUrl: req.params.id }, (err, url) => {
   //   const originUrl = url.inputUrl

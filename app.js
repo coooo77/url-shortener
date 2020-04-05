@@ -35,9 +35,11 @@ app.use(session({
 const flash = require('connect-flash')
 app.use(flash())
 app.use((req, res, next) => {
+  console.log('OUT req.params', req.params)
   res.locals.tempUrl = req.params
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
+  console.log('OUT res.locals', res.locals)
   next()
 })
 
