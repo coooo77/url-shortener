@@ -19,7 +19,7 @@
     </form>
 
 
-    <table class="table mt-3">
+    <table class="table mt-3" id="show">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -35,7 +35,7 @@
             <td> <a href="{{this.inputUrl}}">{{this.inputUrl}}</a> </td>
             <td> <a href="{{{this.paramsUrl}}}">{{{this.paramsUrl}}}</a>
             </td>
-            <td>COPY</td>
+            <td><button type="button" class="btn btn-info copyUrl">Copy</button></td>
           </tr>
         {{/each}}
       </tbody>

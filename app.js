@@ -40,6 +40,8 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use('/', express.static('public'))
+
 app.use('/', require('./routes/home'))
 
 app.listen(port, () => {
