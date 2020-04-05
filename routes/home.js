@@ -61,7 +61,6 @@ router.get('/:id', (req, res) => {
   const id = req.params.id
   console.log('req.params.id', req.params.id)
   console.log('id', id)
-  console.log('res.locals.tempUrl', res.locals.tempUrl)
   console.log('------------------------------------------------------')
 
   if (req.params.id === 'favicon.ico') {
@@ -73,8 +72,6 @@ router.get('/:id', (req, res) => {
       .exec((err, url) => {
         console.log('------------------------------------------------------')
         console.log('url', url)
-        console.log('req.params', req.params)
-        console.log('res.params', res.params)
         console.log('------------------------------------------------------')
         if (err) return console.error(err)
         const originUrl = url.inputUrl
