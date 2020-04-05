@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const shortenUrlCheckAndStorage = require('../shortenUrlCheckAndStorage')
-
 const Url = require('../models/url')
 
+// 顯示首頁跟縮網址資料
 router.get('/', (req, res) => {
   Url.find()
     .lean()
@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// 輸入網址，判斷網址資料
 router.post('/', (req, res) => {
   console.log('req.body', req.body)
   if (req.body.input === "") {
@@ -48,6 +49,15 @@ router.post('/', (req, res) => {
         })
       })
   }
+})
+
+// 執行縮網址
+router.get('/:params', (req, res) => {
+  console.log(req.params)
+  Url.findOne({ paramsUrl: req.params.params }, (err, url) => {
+    const originUrl = url.inputUrl
+    res.redirect(`${originUrl}`)
+  })
 })
 
 module.exports = router
