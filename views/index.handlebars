@@ -1,10 +1,7 @@
 <div class="row">
   <div class="col-12 col-lg-10 col-xl-8 mt-3 py-2 mx-auto border border-danger">
-    {{!-- <h1>縮網址產生器</h1>
-    <form action="/" method="post" class="mr-auto">
-      <input type="text" name="" id="" placeholder="請輸入想要導向的網址">
-      <button type="submit">輸入</button>
-    </form> --}}
+
+    {{> messages}}
 
     <form action="/" method="post">
 
@@ -12,7 +9,8 @@
         <label for="input">
           <h1>縮網址產生器</h1>
         </label>
-        <input type="text" class="form-control" id="input" aria-describedby="inputHelp" placeholder="Enter URL">
+        <input type="url" class="form-control" id="input" aria-describedby="inputHelp" placeholder="Enter URL"
+          name="input">
         <small id="inputHelp" class="form-text text-muted">請輸入您想要縮短的網址.</small>
       </div>
 
@@ -34,7 +32,7 @@
         {{#each urls}}
           <tr>
             <th scope="row">#</th>
-            <td>{{this.inputUrl}}</td>
+            <td> <a href="{{this.inputUrl}}">{{this.inputUrl}}</a> </td>
             <td> <a href="{{{this.paramsUrl}}}">{{{this.paramsUrl}}}</a>
             </td>
             <td>COPY</td>
