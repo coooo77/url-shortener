@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   Url.find()
     .lean()
     .exec((err, urls) => {
-      const mainUrl = 'http://localhost:3000/'
+      const mainUrl = process.env.Heroku || 'http://localhost:3000/'
       for (let i = 0; i < urls.length; i++) {
         urls[i].paramsUrl = mainUrl + urls[i].paramsUrl
       }
