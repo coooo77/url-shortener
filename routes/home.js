@@ -57,9 +57,11 @@ router.post('/', (req, res) => {
 
 // 執行縮網址
 router.get('/:id', (req, res) => {
-  console.log('req.params.id', req.params.id)
-  const id = req.params.id
-  Url.findOne({ paramsUrl: id })
+  // console.log('------------------------------------------------------')
+  // console.log('req.params.id', req.params.id)
+  // console.log('------------------------------------------------------')
+  // const id = req.params.id
+  Url.findOne({ paramsUrl: req.params.id })
     .lean()
     .exec((err, url) => {
       console.log('------------------------------------------------------')
