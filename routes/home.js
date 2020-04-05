@@ -58,7 +58,15 @@ router.post('/', (req, res) => {
 // 執行縮網址
 router.get('/:id', (req, res) => {
   console.log('req.params.id', req.params.id)
-  res.redirect('/')
+  const id = req.params.id
+  Url.findOne({ paramsUrl: id })
+    .lean()
+    .exec((err, url) => {
+      if (err) return console.error(err)
+      const originUrl = url.inputUrl
+      res.redirect(`${originUrl}`)
+    })
+
   // Url.findOne({ paramsUrl: req.params.params }, (err, url) => {
   //   const originUrl = url.inputUrl
   //   console.log(originUrl)
