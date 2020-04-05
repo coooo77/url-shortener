@@ -62,16 +62,19 @@ router.get('/:id', (req, res) => {
   Url.findOne({ paramsUrl: id })
     .lean()
     .exec((err, url) => {
+      console.log('------------------------------------------------------')
+      console.log('url', url)
+      console.log('------------------------------------------------------')
       if (err) return console.error(err)
       const originUrl = url.inputUrl
       res.redirect(`${originUrl}`)
     })
 
-  // Url.findOne({ paramsUrl: req.params.params }, (err, url) => {
+  // 下面的寫法Heroku會找不到params，只有找到一個叫favicon.ico的params，WHY????
+  // Url.findOne({ paramsUrl: req.params.id }, (err, url) => {
   //   const originUrl = url.inputUrl
   //   console.log(originUrl)
-  //   res.redirect('/')
-  //   // res.redirect(`${originUrl}`)
+  //   res.redirect(`${originUrl}`)
   // })
 })
 
