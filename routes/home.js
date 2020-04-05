@@ -21,17 +21,21 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   console.log('req.body', req.body)
   if (req.body.input === "") {
+    // 助教的檢查項目 ----------------------------------------------
     // req.body.input === "" 代表使用者沒有輸入內容
     // 若使用者沒有輸入內容，就按下了送出鈕，需要防止表單送出並提示使用者
+    // 助教的檢查項目 ----------------------------------------------
     req.flash('warning_msg', '請輸入網址！')
     res.redirect('/')
   } else {
     Url.find()
       .lean()
       .exec((err, urls) => {
+        // 助教的檢查項目 ----------------------------------------------
         // 若需要防止有重覆的網址組合出現
         // 先列印出所有縮網址給shortenUrlCheckAndStorage檢查
         // shortenUrlCheckAndStorage會給予不重複的縮網址
+        // 助教的檢查項目 ----------------------------------------------
         const paramsList = []
         for (let i = 0; i < urls.length; i++) {
           paramsList.push(urls[i].paramsUrl)
